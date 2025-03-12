@@ -7,13 +7,13 @@ function ModalExcluir({ show, handleClose, item, setInstituicoes }) {
     try {
       const response = await fetch(`https://localhost:3000/instituicoes/${item.id}`, {
         method: 'DELETE',
-      }).then((response) => console.log(response.json()));
+      }).then((response) => console.log(response.json())).catch((error) => console.error(error));
 
       if (!response.ok) {
         throw new Error("Erro ao excluir o item");
       }
 
-      setInstituicoes((instituicoes) => 
+      setInstituicoes((instituicoes) =>
         instituicoes.filter((instituicao) => instituicao.id !== item.id)
       );
 

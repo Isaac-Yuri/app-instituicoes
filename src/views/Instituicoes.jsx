@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Tabela from '../components/Tabela';
 import { Button, Form } from 'react-bootstrap';
 import ModalAdd from '../components/ModalAdd';
+import { ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Instituicoes = () => {
     const [instituicoes, setInstituicoes] = useState([]);
@@ -13,6 +15,7 @@ const Instituicoes = () => {
         no_municipio: '',
         no_uf: ''
     });
+    const notify = () => toast.success('Instituição adicionada com sucesso!');
 
     useEffect(() => {
         fetch('http://localhost:3000/instituicoes/')
@@ -44,7 +47,7 @@ const Instituicoes = () => {
         setNovaInstituicao({ no_entidade: '', no_municipio: '', no_uf: '' });
     };
 
-    const handleSalvar = () => {
+    const handleSave = () => {
         fetch('http://localhost:3000/instituicoes/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -76,10 +79,13 @@ const Instituicoes = () => {
             <ModalAdd
                 show={showModal}
                 handleClose={handleFecharModal}
-                handleSave={handleSalvar}
+                handleSave={handleSave}
                 novaInstituicao={novaInstituicao}
                 setNovaInstituicao={setNovaInstituicao}
+                notify={notify}
             />
+
+            <ToastContainer />
         </div>
     );
 };
