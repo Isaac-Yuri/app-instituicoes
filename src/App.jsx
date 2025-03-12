@@ -1,17 +1,21 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './layout/Layout';
+import Home from './views/Home';
+import Instituicoes from './views/Instituicoes';
+import Outros from './views/Outros';
 
-function App() {
+const AppRoutes = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/instituicoes" element={<Instituicoes />} />
-        <Route path="/outros" element={<Outros />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="instituicoes" element={<Instituicoes />} />
+          <Route path="outros" element={<Outros />} />
+        </Route>
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
-}
+};
 
-export default App;
+export default AppRoutes;
