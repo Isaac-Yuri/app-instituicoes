@@ -1,10 +1,11 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Image } from "react-bootstrap";
 
 const Carousel = () => {
   return (
     <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
-      
+
       <div className="carousel-indicators">
         <button
           type="button"
@@ -28,11 +29,11 @@ const Carousel = () => {
         ></button>
       </div>
 
-      
+
       <div className="carousel-inner">
 
         <div className="carousel-item active">
-          <img src="0000027901.jpg" className="d-block w-100" alt="Primeiro Slide" />
+          <Image src="0000027901.jpg" className="d-block w-100" alt="Primeiro Slide" />
           <div className="carousel-caption d-none d-md-block">
             <h5>Primeiro Slide</h5>
             <p>Texto de descrição do primeiro slide.</p>
@@ -40,7 +41,7 @@ const Carousel = () => {
         </div>
 
         <div className="carousel-item">
-          <img src="7c4bd311038460f3168336281708453e.jpeg" className="d-block w-100" alt="Segundo Slide" />
+          <Image src="7c4bd311038460f3168336281708453e.jpeg" className="d-block w-100" alt="Segundo Slide" />
           <div className="carousel-caption d-none d-md-block">
             <h5>Segundo Slide</h5>
             <p>Texto de descrição do segundo slide.</p>
@@ -48,7 +49,7 @@ const Carousel = () => {
         </div>
 
         <div className="carousel-item">
-          <img src="1_photo_2024_08_16_19_15_48-39474786.jpg" className="d-block w-100" alt="Terceiro Slide" />
+          <Image src="1_photo_2024_08_16_19_15_48-39474786.jpg" className="d-block w-100" alt="Terceiro Slide" />
           <div className="carousel-caption d-none d-md-block">
             <h5>Terceiro Slide</h5>
             <p>Texto de descrição do terceiro slide.</p>
@@ -57,7 +58,6 @@ const Carousel = () => {
 
       </div>
 
-      
       <button
         className="carousel-control-prev"
         type="button"
