@@ -1,26 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ModalExcluir({ show, handleClose, item, setInstituicoes }) {
   const excluirItem = async () => {
     try {
-      const response = await fetch(`https://localhost:3000/instituicoes/${item.id}`, {
+      const response = await fetch(`http://localhost:3000/instituicoes/${item.id}`, {
         method: 'DELETE',
-      }).then((response) => console.log(response.json())).catch((error) => console.error(error));
+      });
 
       if (!response.ok) {
         throw new Error("Erro ao excluir o item");
       }
 
-      setInstituicoes((instituicoes) =>
-        instituicoes.filter((instituicao) => instituicao.id !== item.id)
+      setInstituicoes((prevInstituicoes) => 
+        prevInstituicoes.filter((instituicao) => instituicao.id !== item.id)
       );
+
+      toast.success("Instituição excluída com sucesso!");
 
       handleClose();
     } catch (error) {
       console.error("Erro:", error);
-      alert("Erro ao excluir o item");
+      toast.error("Erro ao excluir a instituição!");
     }
   };
 
