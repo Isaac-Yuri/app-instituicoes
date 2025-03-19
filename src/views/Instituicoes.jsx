@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Tabela from '../components/Tabela';
 import { Button, Form } from 'react-bootstrap';
 import ModalAdd from '../components/ModalAdd';
-import { ToastContainer, toast} from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Instituicoes = () => {
@@ -10,11 +10,7 @@ const Instituicoes = () => {
     const [termoBusca, setTermoBusca] = useState('');
     const [instituicoesFiltradas, setInstituicoesFiltradas] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [novaInstituicao, setNovaInstituicao] = useState({
-        no_entidade: '',
-        no_municipio: '',
-        no_uf: ''
-    });
+
     const notify = () => toast.success('Instituição adicionada com sucesso!');
 
     useEffect(() => {
@@ -24,7 +20,7 @@ const Instituicoes = () => {
                 setInstituicoes(data);
                 setInstituicoesFiltradas(data);
             });
-    }, []);
+    }, [instituicoes]);
 
     const handleBusca = (e) => {
         const termo = e.target.value.toLowerCase();
@@ -44,10 +40,9 @@ const Instituicoes = () => {
 
     const handleFecharModal = () => {
         setShowModal(false);
-        setNovaInstituicao({ no_entidade: '', no_municipio: '', no_uf: '' });
     };
 
-    const handleSave = () => {
+    const handleSave = (novaInstituicao) => {
         fetch('http://localhost:3000/instituicoes/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -57,6 +52,7 @@ const Instituicoes = () => {
         .then(data => {
             setInstituicoes([...instituicoes, data]);
             setInstituicoesFiltradas([...instituicoesFiltradas, data]);
+            notify();
             handleFecharModal();
         });
     };
@@ -80,8 +76,6 @@ const Instituicoes = () => {
                 show={showModal}
                 handleClose={handleFecharModal}
                 handleSave={handleSave}
-                novaInstituicao={novaInstituicao}
-                setNovaInstituicao={setNovaInstituicao}
                 notify={notify}
             />
 
